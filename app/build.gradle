@@ -1,0 +1,152 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "com.google.dagger.hilt.android"
+    id "kotlin-kapt"
+}
+
+android {
+    namespace "com.ellie.jetportfolio"
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.ellie.jetportfolio"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            // Enables code shrinking, obfuscation, and optimization for only
+            // project"s release build type.
+            minifyEnabled true
+
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources true
+
+            // Includes the default ProGuard rules files that are packaged with
+            // the Android Gradle plugin. To learn more, go to the section about
+            // R8 configuration files.
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"),
+                    // List additional ProGuard rules for the given build type here. By default,
+                    // Android Studio creates and includes an empty rules file for you (located
+                    // at the root directory of each module).
+                    "proguard-rules.pro"
+        }
+    }
+
+//    flavorDimensions "flavor"
+//    productFlavors {
+//        flavor1 {
+//            ...
+//        }
+//        flavor2 {
+//            proguardFile "flavor2-rules.pro"
+//        }
+//    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion rootProject.compose_compiler_version
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+}
+
+dependencies {
+
+    // ------ Kotlin core ------
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+
+    // DI: hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+
+    // ------ Compose UI ------
+    // Compose BOM - compose lib version control
+    implementation platform("androidx.compose:compose-bom:$compose_bom_version")
+    implementation "androidx.compose.foundation:foundation"
+    implementation "androidx.compose.foundation:foundation-layout"
+    // Compose UI
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    // Material icon
+    implementation "androidx.compose.material:material-icons-extended"
+    // M3
+    implementation "androidx.compose.material3:material3"
+    // Compose activity
+    implementation "androidx.activity:activity-compose:1.6.1"
+    // Compose navigation (e.g. NavigationRail)
+    implementation "androidx.navigation:navigation-compose:$navigation_version"
+    // constraint-layout
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+    // ------ Compose Life Cycle ------
+    // https://developer.android.com/jetpack/androidx/releases/lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+
+    // ------ Google ------
+    // system status bar colors
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
+    // FoldingFeature / Orientation
+    implementation "com.google.accompanist:accompanist-adaptive:$accompanist_version"
+    // Wrapping layout for hashtag chips
+    implementation "com.google.accompanist:accompanist-flowlayout:$accompanist_version"
+    // Swipe refresh for lazy views
+    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
+
+    // ------ Third Party Libs ------
+    // Image Loader: Coil - https://coil-kt.github.io/coil/compose/
+    implementation("io.coil-kt:coil-compose:2.2.2")
+    // API: Retrofit - https://square.github.io/retrofit/
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit2_version"
+    // Network: OKHTTP3
+    // implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+    // implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+    // Json Parser: Moshi - https://github.com/square/moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    // Logging: Timber - https://github.com/JakeWharton/timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
+
+    // ------ Testing Dependencies ------
+    // Testing documentation - https://developer.android.com/jetpack/compose/testing#setup
+    testImplementation "junit:junit:4.13.2"
+    // UI test: Fix test issue on API 33+: missing "InstrumentationActivityInvoker$BootstrapActivity" & "InstrumentationActivityInvoker$EmptyActivity"
+    androidTestImplementation "androidx.test:core:1.5.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation "androidx.navigation:navigation-testing:$navigation_version"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.3.2"
+    debugImplementation "androidx.compose.ui:ui-tooling"
+    debugImplementation "androidx.compose.ui:ui-test-manifest"
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes true
+}

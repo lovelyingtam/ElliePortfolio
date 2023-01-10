@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Ying Tam</string>
+
+    <string name="na">N/A</string>
+    <string name="copied">Copied</string>
+    <string name="present">Present</string>
+    <string name="navigation_bottom">Navigation Bottom</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="contact_information">Contact Information</string>
+    <string name="error">Error</string>
+    <string name="about">About</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="position">Position</string>
+    <string name="email">Email</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="profile">Profile</string>
+    <string name="business_card">Business Card</string>
+    <string name="work_experience">Work Experience</string>
+    <string name="technical_skills">Technical Skills</string>
+    <string name="education">Education</string>
+    <string name="graduated_in">Graduated in</string>
+
+    <string name="skill_cloud_database">Cloud Database</string>
+    <string name="skill_development_framework">Development Framework</string>
+    <string name="skill_expanded_support">Expanded Support</string>
+    <string name="skill_programming_language">Programming Language</string>
+
+    <string name="expand_button_content_description">See more or less information</string>
+    <string name="no_more_detail">No more details found</string>
+
+    <plurals name="yr">
+        <item quantity="one">yr</item>
+        <item quantity="other">yrs</item>
+    </plurals>
+    <plurals name="mo">
+        <item quantity="one">mo</item>
+        <item quantity="other">mos</item>
+    </plurals>
+</resources>
