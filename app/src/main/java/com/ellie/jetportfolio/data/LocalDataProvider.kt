@@ -34,6 +34,7 @@ object LocalDataProvider {
             )
         ),
         email = "XXX",
+        headline = "XXX",
         firstName = "XXX",
         id = "XXX",
         lastName = "XXX",

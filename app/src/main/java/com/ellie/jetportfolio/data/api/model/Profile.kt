@@ -13,6 +13,7 @@ data class Profile(
     @Json(name = "coverPhotoUrl") val coverPhotoUrl: String,
     @Json(name = "education") val education: List<Education>,
     @Json(name = "email") val email: String,
+    @Json(name = "headline") val headline: String,
     @Json(name = "firstName") val firstName: String,
     @Json(name = "id") val id: String,
     @Json(name = "lastName") val lastName: String,

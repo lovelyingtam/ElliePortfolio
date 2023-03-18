@@ -118,7 +118,7 @@ fun ProfileContent(
                 coverPhotoUrl = profile.coverPhotoUrl,
                 profilePicUrl = profile.pictureUrl,
                 displayName = profile.displayName,
-                position = profile.displayPosition,
+                headline = profile.headline,
                 location = profile.location,
                 phoneNumber = profile.phoneNumber,
                 email = profile.email,
@@ -208,7 +208,7 @@ private fun ProfileCard(
     coverPhotoUrl: String?,
     profilePicUrl: String?,
     displayName: String,
-    position: String,
+    headline: String,
     location: String,
     phoneNumber: String,
     email: String,
@@ -227,11 +227,11 @@ private fun ProfileCard(
         )
     ) {
         // --- Profile Picture ---
-        SummaryContent(
+        HeadlineSummaryContent(
             coverPhotoUrl = coverPhotoUrl,
             profilePicUrl = profilePicUrl,
             displayName = displayName,
-            position = position,
+            headline = headline,
             location = location,
             modifier = Modifier.padding(bottom = SpaceMedium),
         )
@@ -387,18 +387,18 @@ private fun TechnicalSkillCard(
 }
 
 @Composable
-private fun SummaryContent(
+private fun HeadlineSummaryContent(
     modifier: Modifier = Modifier,
     coverPhotoUrl: String?,
     profilePicUrl: String?,
     displayName: String,
-    position: String,
+    headline: String,
     location: String,
 ) {
     ConstraintLayout(modifier = modifier.fillMaxWidth()) {
         //  Create guideline
         val startGuideline = createGuidelineFromStart(SpaceMedium)
-        val endGuideline = createGuidelineFromEnd(SpaceSmall)
+        val endGuideline = createGuidelineFromEnd(SpaceMedium)
 
         // Create references for the composable to constrain
         val (
@@ -444,10 +444,10 @@ private fun SummaryContent(
                 width = Dimension.fillToConstraints
             },
         )
-        // Position
+        // Headline
         Text(
-            text = position,
-            style = MaterialTheme.typography.labelLarge,
+            text = headline,
+            style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
                 .padding(top = SpaceSmall)

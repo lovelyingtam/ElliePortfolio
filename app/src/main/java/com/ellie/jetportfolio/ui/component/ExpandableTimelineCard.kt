@@ -42,7 +42,7 @@ fun ExpandableMultipleTimelineCard(
     ) {
         subtitleText.forEachIndexed { i, _ ->
             TimelineContent(
-                isLastIndex = i != subtitleText.size - 1,
+                isLastIndex = i == subtitleText.size - 1,
                 titleText = subtitleText[i],
                 label1Text = label1Text[i],
                 label2Text = label2Text[i],
@@ -132,12 +132,13 @@ private fun ExpandableTimelineCard(
                 .animateContentSize(
                     animationSpec = spring(
                         dampingRatio = Spring.DampingRatioMediumBouncy,
-                        stiffness = Spring.StiffnessMediumLow,
+                        stiffness = Spring.StiffnessMedium,
                     )
                 ),
         ) {
             //  Create guideline
             val topGuideline = createGuidelineFromTop(SpaceMedium)
+            val startGuideline = createGuidelineFromStart(SpaceSmall)
             val endGuideline = createGuidelineFromEnd(SpaceSmall)
 
             // Create references for the composable to constrain
@@ -161,7 +162,7 @@ private fun ExpandableTimelineCard(
                         top.linkTo(topGuideline)
                     },
             )
-            // Arrow
+            // Show arrow if have description
             descriptionText?.let {
                 ExpandArrowButton(
                     isExpanded = expanded,
@@ -207,11 +208,11 @@ private fun ExpandableTimelineCard(
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.constrainAs(descriptionRef) {
                             if (content != null) {
-                                top.linkTo(contentRef.bottom, margin = SpaceSmall)
+                                top.linkTo(contentRef.bottom, margin = SpaceMedium)
                             } else {
-                                top.linkTo(titleRef.bottom, margin = SpaceSmall)
+                                top.linkTo(titleRef.bottom, margin = SpaceMedium)
                             }
-                            start.linkTo(titleRef.start)
+                            start.linkTo(startGuideline)
                             end.linkTo(endGuideline)
                             width = Dimension.fillToConstraints
                         },
@@ -251,7 +252,7 @@ private fun TimelineContent(
             iconRef,
         ) = createRefs()
 
-        // Labels
+        // Labels Area
         Column(
             modifier = Modifier.constrainAs(labelContentRef) {
                 start.linkTo(labelStartGuideline)
@@ -265,12 +266,17 @@ private fun TimelineContent(
                 label2Text = label2Text,
             )
         }
-        Spacer(modifier = Modifier
-            .height(SpaceMedium)
-            .constrainAs(bottomSpaceRef) {
-                top.linkTo(labelContentRef.bottom)
-            })
-        // Timeline icons
+
+        // Add space between each label set if not the last item
+        if (!isLastIndex) {
+            Spacer(modifier = Modifier
+                .height(SpaceMedium)
+                .constrainAs(bottomSpaceRef) {
+                    top.linkTo(labelContentRef.bottom)
+                })
+        }
+
+        // Timeline indicator icon
         val indicatorColor = MaterialTheme.colorScheme.primary
         Divider(
             modifier = Modifier
@@ -278,10 +284,10 @@ private fun TimelineContent(
                 .constrainAs(divRef) {
                     start.linkTo(timelineStartGuideline)
                     top.linkTo(parent.top, margin = timelineTopOffset)
-                    bottom.linkTo(bottomSpaceRef.bottom)
+                    bottom.linkTo(if (!isLastIndex) bottomSpaceRef.bottom else labelContentRef.bottom)
                     height = Dimension.fillToConstraints
                 },
-            color = if (isLastIndex) indicatorColor else Color.Transparent,
+            color = if (!isLastIndex) indicatorColor else Color.Transparent,
         )
         Icon(
             imageVector = Icons.Default.Circle,
