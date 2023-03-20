@@ -27,13 +27,6 @@ class SampleViewModel @Inject constructor() : ViewModel() {
 
         viewModelScope.launch {
             delay(2000)
-
-            _uiState.update {
-                it.copy(
-                    count = _uiState.value.count + 1,
-                    message = "Data changed: ${_uiState.value.count}",
-                )
-            }
         }
     }
 
@@ -41,7 +34,7 @@ class SampleViewModel @Inject constructor() : ViewModel() {
         _uiState.update {
             it.copy(
                 count = _uiState.value.count + 1,
-                message = "Data changed: ${_uiState.value.count}",
+                message = "Added: ${_uiState.value.count}",
             )
         }
     }

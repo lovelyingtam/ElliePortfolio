@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.HelpCenter
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -25,7 +26,6 @@ fun SampleScreen(
     viewModel: SampleViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
-//    val context = LocalContext.current
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -35,8 +35,8 @@ fun SampleScreen(
                     viewModel.add()
                 },
                 showText = true,
-                imageVector = Icons.Default.HelpCenter,
-                textId = R.string.app_name,
+                imageVector = Icons.Default.Add,
+                textId = R.string.add,
             )
         },
     ) {

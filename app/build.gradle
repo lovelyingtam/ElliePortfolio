@@ -95,15 +95,15 @@ dependencies {
     implementation "androidx.compose.material:material-icons-extended"
     // M3
     implementation "androidx.compose.material3:material3"
-    // Compose activity
-    implementation "androidx.activity:activity-compose:1.6.1"
-    // Compose navigation (e.g. NavigationRail)
+    // Activity
+    implementation "androidx.activity:activity-compose"
+    // Navigation (e.g. NavigationRail)
     implementation "androidx.navigation:navigation-compose:$navigation_version"
     // constraint-layout
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
-
-    // ------ Compose Life Cycle ------
-    // https://developer.android.com/jetpack/androidx/releases/lifecycle
+    // JankStats Library - https://developer.android.com/topic/performance/jankstats
+    implementation "androidx.metrics:metrics-performance:1.0.0-alpha03"
+    // Life Cycle - https://developer.android.com/jetpack/androidx/releases/lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime-compose:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
 
@@ -119,7 +119,8 @@ dependencies {
 
     // ------ Third Party Libs ------
     // Image Loader: Coil - https://coil-kt.github.io/coil/compose/
-    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation "io.coil-kt:coil-compose:2.2.2"
+
     // API: Retrofit - https://square.github.io/retrofit/
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit2_version"

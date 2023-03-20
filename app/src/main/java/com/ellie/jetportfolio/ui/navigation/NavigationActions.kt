@@ -31,7 +31,7 @@ sealed class Screen(
 
     object Sample : Screen(
         route = Route.SAMPLE,
-        titleId = R.string.app_name,
+        titleId = R.string.sample,
         onIcon = Icons.Default.Help,
         offIcon = Icons.Default.HelpOutline,
     )

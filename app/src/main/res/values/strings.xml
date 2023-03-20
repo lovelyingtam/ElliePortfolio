@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Ying Tam</string>
+    <string name="add">add</string>
+    <string name="sample">Sample</string>
 
     <string name="na">N/A</string>
     <string name="copied">Copied</string>
