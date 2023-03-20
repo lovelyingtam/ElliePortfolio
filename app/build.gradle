@@ -83,7 +83,7 @@ dependencies {
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 
-    // ------ Compose UI ------
+    // ------ Android X ------
     // Compose BOM - compose lib version control
     implementation platform("androidx.compose:compose-bom:$compose_bom_version")
     implementation "androidx.compose.foundation:foundation"
