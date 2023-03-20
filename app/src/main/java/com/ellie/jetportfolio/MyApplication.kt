@@ -2,6 +2,8 @@ package com.ellie.jetportfolio
 
 import android.app.Application
 import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
+import android.os.StrictMode.VmPolicy
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.util.DebugLogger
@@ -13,14 +15,8 @@ class MyApplication : Application(), ImageLoaderFactory {
 
     init {
         if (BuildConfig.DEBUG) {
+            // Timber log
             Timber.plant(Timber.DebugTree())
-            StrictMode.enableDefaults()
-            StrictMode.setVmPolicy(
-                StrictMode.VmPolicy.Builder()
-                    .detectLeakedClosableObjects()
-                    .penaltyLog()
-                    .build()
-            )
         }
     }
 
