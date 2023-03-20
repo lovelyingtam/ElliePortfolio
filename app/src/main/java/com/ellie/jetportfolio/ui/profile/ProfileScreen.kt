@@ -10,11 +10,17 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Badge
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,12 +44,10 @@ import com.ellie.jetportfolio.utils.toString
 import com.google.accompanist.flowlayout.FlowCrossAxisAlignment
 import com.google.accompanist.flowlayout.FlowRow
 import com.google.accompanist.flowlayout.SizeMode
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import java.time.YearMonth
 import kotlin.math.roundToInt
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun ProfileScreen(
     modifier: Modifier = Modifier,
@@ -67,12 +71,13 @@ fun ProfileScreen(
             }
         },
     ) {
-        SwipeRefresh(
-            modifier = Modifier
+        val state = rememberPullRefreshState(uiState.isRefreshing, { viewModel.refresh() })
+
+        Box(
+            Modifier
                 .fillMaxSize()
-                .padding(it),
-            state = rememberSwipeRefreshState(uiState.isRefreshing),
-            onRefresh = { viewModel.refresh() },
+                .padding(it)
+                .pullRefresh(state)
         ) {
             if (uiState.isRefreshing) {
                 // Loading bar
@@ -92,7 +97,11 @@ fun ProfileScreen(
                     )
                 }
             }
+
+            PullRefreshIndicator(uiState.isRefreshing, state, Modifier.align(Alignment.TopCenter))
         }
+
+
     }
 }
 
