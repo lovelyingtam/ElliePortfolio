@@ -6,12 +6,19 @@ import android.os.StrictMode.ThreadPolicy
 import android.os.StrictMode.VmPolicy
 import coil.ImageLoader
 import coil.ImageLoaderFactory
+import coil.disk.DiskCache
+import coil.memory.MemoryCache
 import coil.util.DebugLogger
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Provider
 
 @HiltAndroidApp
 class MyApplication : Application(), ImageLoaderFactory {
+
+    @Inject
+    lateinit var imageLoader: Provider<ImageLoader>
 
     init {
         if (BuildConfig.DEBUG) {
@@ -19,11 +26,5 @@ class MyApplication : Application(), ImageLoaderFactory {
             Timber.plant(Timber.DebugTree())
         }
     }
-
-    override fun newImageLoader(): ImageLoader {
-        return ImageLoader.Builder(this)
-            .crossfade(true)
-            .logger(DebugLogger())
-            .build()
-    }
+    override fun newImageLoader(): ImageLoader = imageLoader.get()
 }
