@@ -10,17 +10,17 @@ import java.time.YearMonth
 
 @JsonClass(generateAdapter = true)
 data class Profile(
-    @Json(name = "coverPhotoUrl") val coverPhotoUrl: String,
+    @Json(name = "coverPhotoUrl") val coverPhotoUrl: String?,
     @Json(name = "education") val education: List<Education>,
-    @Json(name = "email") val email: String,
+    @Json(name = "email") val email: String?,
     @Json(name = "headline") val headline: String,
     @Json(name = "firstName") val firstName: String,
     @Json(name = "id") val id: String,
     @Json(name = "lastName") val lastName: String,
     @Json(name = "location") val location: String,
     @Json(name = "nickname") val nickname: String,
-    @Json(name = "phoneNumber") val phoneNumber: String,
-    @Json(name = "pictureUrl") val pictureUrl: String,
+    @Json(name = "phoneNumber") val phoneNumber: String?,
+    @Json(name = "pictureUrl") val pictureUrl: String?,
     @Json(name = "professionalSummary") val professionalSummary: String,
     @Json(name = "socialMedia") val socialMedia: List<SocialMedia>?,
     @Json(name = "technicalSkillSet") val technicalSkillSet: TechnicalSkillSet?,

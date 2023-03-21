@@ -219,8 +219,8 @@ private fun ProfileCard(
     displayName: String,
     headline: String,
     location: String,
-    phoneNumber: String,
-    email: String,
+    phoneNumber: String?,
+    email: String?,
     socialMedias: List<Profile.SocialMedia>? = null,
     technicalSkill: Profile.TechnicalSkillSet? = null,
 ) {
@@ -313,6 +313,7 @@ private fun AboutContent(
         Text(
             text = about,
             style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(SpaceMedium),

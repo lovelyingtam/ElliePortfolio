@@ -95,8 +95,8 @@ private fun SummaryContent(
 @Composable
 fun ContactInfoContent(
     modifier: Modifier = Modifier,
-    phoneNumber: String,
-    email: String,
+    phoneNumber: String?,
+    email: String?,
     socialMedias: List<Profile.SocialMedia>?,
     arrangementSpace: Dp = SpaceSmall,
 ) {
@@ -105,16 +105,20 @@ fun ContactInfoContent(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(arrangementSpace),
     ) {
-        ClipboardIconLabel(
-            icon = Icons.Default.Call,
-            label = stringResource(R.string.contact_number),
-            text = phoneNumber,
-        )
-        ClipboardIconLabel(
-            icon = Icons.Default.Email,
-            label = stringResource(R.string.email),
-            text = email,
-        )
+        phoneNumber?.let {
+            ClipboardIconLabel(
+                icon = Icons.Default.Call,
+                label = stringResource(R.string.contact_number),
+                text = phoneNumber,
+            )
+        }
+        email?.let {
+            ClipboardIconLabel(
+                icon = Icons.Default.Email,
+                label = stringResource(R.string.email),
+                text = email,
+            )
+        }
         socialMedias?.forEach {
             ClipboardIconLabel(
                 icon = Icons.Default.Link,

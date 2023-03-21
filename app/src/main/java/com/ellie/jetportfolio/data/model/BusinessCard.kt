@@ -15,8 +15,8 @@ data class BusinessCard(
     @Json val nickname: String,
     @Json val fullName: String,
     @Json val position: String,
-    @Json val phoneNumber: String,
-    @Json val email: String,
+    @Json val phoneNumber: String?,
+    @Json val email: String?,
     @Json val socialMedia: List<Profile.SocialMedia>?,
 ) {
     override fun toString(): String = Uri.encode(toJson())
