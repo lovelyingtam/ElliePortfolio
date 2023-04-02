@@ -38,8 +38,8 @@ class ProfileViewModel @Inject constructor(
                 _uiState.value.errorMessageState = ErrorMessageState(exception = ex)
                 Timber.e(ex, "refresh() - error")
             }
-            _uiState.update {
-                it.copy(
+            _uiState.update {currentState ->
+                currentState.copy(
                     isRefreshing = false
                 )
             }

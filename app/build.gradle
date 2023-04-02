@@ -122,6 +122,12 @@ dependencies {
     // Coil Image Loader for DI - https://coil-kt.github.io/coil/image_loaders/
     implementation "io.coil-kt:coil:2.2.2"
     implementation "androidx.core:core-ktx:1.9.0"
+    // Openai
+    // import Kotlin API client BOM
+    implementation platform('com.aallam.openai:openai-client-bom:3.2.0')
+    // define dependencies without versions
+    implementation 'com.aallam.openai:openai-client'
+    implementation 'io.ktor:ktor-client-okhttp'
 
     // API: Retrofit - https://square.github.io/retrofit/
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"

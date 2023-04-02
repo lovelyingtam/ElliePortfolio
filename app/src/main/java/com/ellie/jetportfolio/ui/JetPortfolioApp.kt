@@ -18,7 +18,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ellie.jetportfolio.data.model.fromJsonToBusinessCard
-import com.ellie.jetportfolio.ui._sample.SampleScreen
+import com.ellie.jetportfolio.ui.chatgpt.ChatGPTScreen
 import com.ellie.jetportfolio.ui.businesscard.BusinessCardScreen
 import com.ellie.jetportfolio.ui.navigation.NavigationActions
 import com.ellie.jetportfolio.ui.navigation.Screen
@@ -53,7 +53,7 @@ fun JetPortfolioApp(modifier: Modifier = Modifier) {
         ) {
             // Sample Screen
             composable(route = Screen.Sample.route) {
-                SampleScreen()
+                ChatGPTScreen()
             }
 
             // Profile Screen

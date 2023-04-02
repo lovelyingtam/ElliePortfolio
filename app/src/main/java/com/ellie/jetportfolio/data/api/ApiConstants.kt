@@ -6,4 +6,5 @@ object ApiConstants {
 
     // Endpoints
     const val END_POINT_GET_PROFILE = "api/{profile_id}.json"
+    
 }

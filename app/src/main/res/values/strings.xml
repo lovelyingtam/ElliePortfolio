@@ -3,6 +3,8 @@
     <string name="add">add</string>
     <string name="sample">Sample</string>
 
+    <string name="send">send</string>
+    <string name="new_chat">New Chat</string>
     <string name="na">N/A</string>
     <string name="copied">Copied</string>
     <string name="present">Present</string>
