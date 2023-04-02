@@ -377,6 +377,7 @@ private fun TechnicalSkillCard(
         Text(
             text = "${stringResource(id = titleId)}: ",
             style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.onSurface,
         )
         skills.forEach { skill ->
             val starIcon by remember(skill) {
