@@ -34,7 +34,6 @@ class SampleViewModel @Inject constructor() : ViewModel() {
         _uiState.update {
             it.copy(
                 count = _uiState.value.count + 1,
-                message = "Added: ${_uiState.value.count}",
             )
         }
     }
