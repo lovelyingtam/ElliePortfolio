@@ -30,8 +30,10 @@ import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun JetPortfolioApp(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
+fun JetPortfolioApp(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
+) {
     val navigationActions = remember(navController) {
         NavigationActions(navController)
     }
